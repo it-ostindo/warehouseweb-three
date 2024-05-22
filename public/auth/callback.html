@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authorization Callback</title>
+</head>
+<body>
+  <div class="container mt-3">
+    <h1>Authorization Callback</h1>
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    function getFragmentParams() {
+      const fragment = window.location.hash.substring(1);
+      const params = {};
+      fragment.split('&').forEach(part => {
+        const [key, value] = part.split('=');
+        params[decodeURIComponent(key)] = decodeURIComponent(value);
+      });
+      return params;
+    }
+
+    const params = getFragmentParams();
+    document.getElementById('output').textContent = JSON.stringify(params, null, 2);
+
+    const accessToken = params['access_token'];
+    if (accessToken) {
+      localStorage.setItem('access_token', accessToken);
+      alert('Access token stored successfully.');
+      window.location.href = '/index.html';
+    } else {
+      console.error('No access token found.');
+    }
+  </script>
+</body>
+</html>
