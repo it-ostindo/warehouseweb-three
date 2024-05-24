@@ -8,7 +8,7 @@ app.get('/fetch-data', async (req, res) => {
   try {
     const accessToken = req.query.accessToken; // Assuming you pass the access token as a query parameter
     const itemId = 1; // Example item ID, replace with your actual item ID
-    const apiUrl = `https://account.accurate.id/accurate/api/item/detail.do?id=${itemId}`;
+    const apiUrl = `https://zeus.accurate.id/accurate/api/item/detail.do?id=${itemId}`;
 
     const response = await fetch(apiUrl, {
       headers: {
